@@ -1,18 +1,40 @@
 {
-  "name": "ed2curve",
-  "version": "0.2.1",
-  "description": "Convert Ed25519 signing keys into Curve25519 Diffie-Hellman keys.",
-  "main": "ed2curve.js",
+  "name": "ed2curve-esm",
+  "version": "0.3.0-alpha-1",
+  "description": "ESM version of dchest/ed2curve Convert Ed25519 signing keys into Curve25519 Diffie-Hellman keys.",
+  "main": "src/index.js",
+  "types": "src/index.ds.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "build": "uglifyjs ed2curve.js -c -m -o ed2curve.min.js",
+    "build": "./node_modules/.bin/pack build",
     "test": "faucet test/*.js"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "__tests__/**/*"
+          ]
+        }
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-build-types"
+      ]
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dchest/ed2curve-js"
+    "url": "https://github.com/pelle/ed2curve-esm"
   },
   "keywords": [
     "ed25519",
@@ -32,12 +54,16 @@
   },
   "homepage": "https://github.com/dchest/ed2curve-js",
   "dependencies": {
-    "tweetnacl": "^1.0.0"
+    "tweetnacl": "^1.0.1"
   },
   "devDependencies": {
+    "@pika/pack": "^0.3.6",
+    "@pika/plugin-build-node": "^0.3.14",
+    "@pika/plugin-build-types": "^0.3.14",
+    "@pika/plugin-build-web": "^0.3.14",
+    "@pika/plugin-standard-pkg": "^0.3.14",
     "faucet": "0.x.x",
-    "tape": "2.x.x",
-    "tweetnacl-util": "^0.13.3",
-    "uglify-js": "^2.6.1"
+    "tape": "^4.10.1",
+    "tweetnacl-util": "^0.15.0"
   }
 }

@@ -1,5 +1,7 @@
-ed2curve.js
+ed2curve.js (ESM compatible version)
 ===========
+
+*note:* This fork is an attempt to make a treeshakeable, typescript typed version of [ed2curve](/dchest/ed2curve-js)
 
 Convert Ed25519 signing key pair into Curve25519 key pair suitable for
 Diffie-Hellman key exchange. This means that by exchanging only 32-byte
@@ -26,19 +28,10 @@ Installation
 
 Via NPM:
 
-    $ npm install ed2curve
+    $ npm install --save ed2curve-esm
 
-Via Bower:
-
-    $ bower install ed2curve
-
-
-or just download `ed2curve.js` or `ed2curve.min.js` and include it after
-[TweetNaCl.js](https://github.com/dchest/tweetnacl-js):
-
-```html
-<script src="nacl.min.js"></script>
-<script src="ed2curve.min.js"></script>
+```js
+import { convertKeyPair } from 'ed2curve-esm'
 ```
 
 Usage
@@ -75,6 +68,10 @@ Example
 to convert bytes)
 
 ```javascript
+import nacl from 'tweetnacl'
+import naclutil from 'tweetnacl-util'
+import * as ed2curve from 'ed2curve-esm'
+
 // Generate new sign key pair.
 var myKeyPair = nacl.sign.keyPair();
 
