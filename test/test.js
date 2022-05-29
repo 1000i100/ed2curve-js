@@ -1,7 +1,7 @@
 var test = require('tape');
 var nacl = require('tweetnacl');
 nacl.util = require('tweetnacl-util');
-var ed2curve = require('../ed2curve');
+var ed2curve = require('../pkg/dist-node/index');
 
 test('ed2curve.convertKeyPair (seed)', function(t) {
   var mySeed = new Uint8Array(32);
